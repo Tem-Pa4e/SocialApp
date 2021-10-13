@@ -1,9 +1,11 @@
 import React from 'react';
+import s from './Profile.module.css';
+import MyPosts from "./MyPosts/MyPosts";
 
 
 function Profile() {
     return (
-        <div className='content'>
+        <div className={s.content}>
             <div>
                 <img
                     src="https://www.michigannature.org/images/img_library/crp/1-132-7-slider-bg-2.jpg"
@@ -12,19 +14,9 @@ function Profile() {
             <div>
                 ava
             </div>
-            <div>
-                My Posts
-                <div>
-                    New Post
-                </div>
-                <div>
-                    Post1
-                </div>
-                <div>
-                    Post2
-                </div>
-            </div>
+            <MyPosts/>
         </div>
+
     )
 }
 

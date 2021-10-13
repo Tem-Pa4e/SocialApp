@@ -1,0 +1,10 @@
+
+.item {
+    color: palevioletred;
+
+}
+
+.item img {
+    width: 30px;
+    border-radius: 30px;
+}

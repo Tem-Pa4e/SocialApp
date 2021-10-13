@@ -1,0 +1,11 @@
+.nav {
+    grid-area: n;
+    background-color: green;
+    width: 100px;
+
+}
+
+.item {
+    color: aqua;
+    margin: 5px;
+}
