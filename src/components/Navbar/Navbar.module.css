@@ -1,11 +1,17 @@
 .nav {
     grid-area: n;
-    background-color: green;
-    width: 100px;
-
+    background-color: aliceblue;
+    max-width: 1000px;
+    padding: 10px;
+    border-right: 1px solid black;
 }
 
-.item {
-    color: aqua;
+.item a {
+    color: black;
     margin: 5px;
+    text-decoration: none;
+}
+
+.item a.activeLink {
+    color: blueviolet;
 }

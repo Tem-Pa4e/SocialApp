@@ -1,21 +1,26 @@
 import React from 'react';
 import s from './Post.module.css';
 
-type PropsMessage = {
-    title: string
+type PropsPost = {
+    id?: number
+    message: string
+    likesCount: number
 }
 
-function Post(props: PropsMessage) {
+function Post(props: PropsPost) {
     return (
         <div className={s.item}>
             <img src="https://hi-news.ru/wp-content/uploads/2020/11/Future_human_Face.png" alt=""/>
-            {props.title}
+            {props.message}
             <div>
-                <span>like</span>
+                like {props.likesCount}
             </div>
         </div>
     )
 }
 
-
 export default Post;
+
+
+
+
