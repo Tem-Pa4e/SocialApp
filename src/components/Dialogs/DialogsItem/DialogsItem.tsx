@@ -4,11 +4,10 @@ import React from "react";
 
 export type DialogsType = {
     id: number
-     name: string
+    name: string
 }
 
-
-function DialogsItems(props: DialogsType) {
+export const DialogsItem = (props: DialogsType) => {
     let path = "/dialogs/" + props.id
 
     return (
@@ -18,4 +17,3 @@ function DialogsItems(props: DialogsType) {
     )
 }
 
-export default DialogsItems;

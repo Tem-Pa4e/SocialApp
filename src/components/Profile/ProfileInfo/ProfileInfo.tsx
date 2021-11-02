@@ -1,8 +1,8 @@
 import React from 'react';
 import s from "./ProfileInfo.module.css"
 
+export const ProfileInfo = () => {
 
-function ProfileInfo() {
     return (
         <div className={s.profileInfo}>
             <div>
@@ -18,4 +18,4 @@ function ProfileInfo() {
 }
 
 
-export default ProfileInfo;
+

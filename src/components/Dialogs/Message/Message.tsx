@@ -6,11 +6,9 @@ export type MessagesType = {
     message: string
 }
 
-
-function Message(props: MessagesType) {
+export const Message = (props: MessagesType) => {
     return (
         <div>{props.message}</div>
     )
 }
 
-export default Message;
