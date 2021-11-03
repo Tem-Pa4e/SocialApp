@@ -9,9 +9,11 @@ import {PostPropsType} from "./components/Profile/MyPosts/Post/Post";
 import {MessagesType} from "./components/Dialogs/Message/Message";
 import {DialogsType} from "./components/Dialogs/DialogsItem/DialogsItem";
 import {StateType} from "./redux/state";
+import {addPost} from "./redux/state";
 
 type AppType = {
     state: StateType
+    addPost: (message: string) => void
 }
 
 
@@ -29,7 +31,7 @@ const App = (props:AppType) => {
                     {/*<Route path='/dialogs' component={Dialogs}/>*/}
                     {/*<Route path='/profile' component={Profile}/>*/}
                     <Route path='/dialogs' render={() => <Dialogs dialogsPage={props.state.dialogsPage} />}/>
-                    <Route path='/profile' render={() => <Profile profilePage={props.state.profilePage}/>}/>
+                    <Route path='/profile' render={() => <Profile profilePage={props.state.profilePage} addPost={props.addPost}/>}/>
                     <Route path='/news'/>
                     <Route path='/music'/>
                     <Route path='/setting'/>

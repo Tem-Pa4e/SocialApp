@@ -1,3 +1,5 @@
+import {renderTree} from "../renderTree";
+
 type MessagesType = {
     id: number
     message: string
@@ -49,4 +51,14 @@ export let state: StateType = {
         ]
     },
     sidebar:{}
+}
+
+export const addPost = (message: string ) => {
+       let newPost: PostPropsType = {
+           id: 5,
+           message: message,
+           likesCount: 0,
+    };
+    state.profilePage.posts.push(newPost)
+    renderTree(state)
 }
