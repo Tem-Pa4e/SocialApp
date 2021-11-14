@@ -5,22 +5,16 @@ import {Profile} from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
-import {PostPropsType} from "./components/Profile/MyPosts/Post/Post";
-import {MessagesType} from "./components/Dialogs/Message/Message";
-import {DialogsType} from "./components/Dialogs/DialogsItem/DialogsItem";
-import {StateType} from "./redux/state";
-import {addPost} from "./redux/state";
+import {StoreType} from "./redux/state";
 
-type AppType = {
-    state: StateType
-    addPost: (message: string) => void
+
+
+type PropsType = {
+    store: StoreType
 }
 
-
-
-
-const App = (props:AppType) => {
-
+const App = (props: PropsType) => {
+    const state = props.store.getState()
 
     return (
         <BrowserRouter>
@@ -28,10 +22,9 @@ const App = (props:AppType) => {
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    {/*<Route path='/dialogs' component={Dialogs}/>*/}
-                    {/*<Route path='/profile' component={Profile}/>*/}
-                    <Route path='/dialogs' render={() => <Dialogs dialogsPage={props.state.dialogsPage} />}/>
-                    <Route path='/profile' render={() => <Profile profilePage={props.state.profilePage} addPost={props.addPost}/>}/>
+                    <Route path='/dialogs' render={() => <Dialogs dialogsPage={props.store._state.dialogsPage}/>}/>
+                    <Route path='/profile'
+                           render={() => <Profile updateNewPostText={props.store.updateNewPostText.bind(props.store)} message={props.store._state.profilePage.newPostText} profilePage={props.store._state.profilePage} addPost={props.store.addPost.bind(props.store)}/>}/>
                     <Route path='/news'/>
                     <Route path='/music'/>
                     <Route path='/setting'/>
