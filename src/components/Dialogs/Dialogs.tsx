@@ -1,24 +1,32 @@
-import React, {LegacyRef} from "react";
+import React, {ChangeEvent, LegacyRef} from "react";
 import s from './Dialogs.module.css'
-import {DialogsItem, DialogsType} from "./DialogsItem/DialogsItem";
-import {Message, MessagesType} from "./Message/Message";
+import {DialogsItem} from "./DialogsItem/DialogsItem";
+import {Message} from "./Message/Message";
 import {DialogsPageType} from "../../redux/state";
 
 
 
 type DialogMessPropsType = {
    dialogsPage:  DialogsPageType
+    addDialogs: (message: string) => void
+    message: string
+    updateDialogsMessage: (newText: string) => void
 }
 
 export const Dialogs = (props: DialogMessPropsType) => {
 
     let newPostElement = React.createRef<HTMLTextAreaElement>()
 
-    let addText = () => {
-
-        let text = newPostElement.current?.value
-        alert(text)
+    const addText = () => {
+        // let text = newPostElement.current?.value
+        // alert(text)
+        alert('props.addDialogs(props.message)')
     }
+    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.updateDialogsMessage(e.currentTarget.value)
+    }
+
+
 
 
     let dialogsElements = props.dialogsPage.dialogs.map(d => <DialogsItem name={d.name} id={d.id}/>)
@@ -32,7 +40,7 @@ export const Dialogs = (props: DialogMessPropsType) => {
             </div>
             <div className={s.messagesItem}>
                 {messagesElements}
-                <textarea ref={newPostElement}></textarea>
+                <textarea onChange={onChangeHandler} value={props.message}></textarea>
                 <button onClick={addText}>add message</button>
             </div>
 
