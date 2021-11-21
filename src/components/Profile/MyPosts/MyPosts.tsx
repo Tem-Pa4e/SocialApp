@@ -17,16 +17,12 @@ export const MyPosts = (props: MyPostPropsType) => {
     // let [postsMessage, setPostsMessage] = useState("")
 
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-
         props.dispatch(changeNewTextAC(e.currentTarget.value))
     }
 
     // let postMessage = createRef<HTMLTextAreaElement>();
     const addPost = () => {
-
-
-            props.dispatch(addPostAC(props.message))
-
+        props.dispatch(addPostAC(props.message))
     }
     // const onKeyPress = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     //     if (e.key === "Enter") {

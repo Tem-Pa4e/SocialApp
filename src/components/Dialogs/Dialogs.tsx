@@ -2,28 +2,30 @@ import React, {ChangeEvent, LegacyRef} from "react";
 import s from './Dialogs.module.css'
 import {DialogsItem} from "./DialogsItem/DialogsItem";
 import {Message} from "./Message/Message";
-import {DialogsPageType} from "../../redux/state";
+import {
+    ActionsTypes,
+    addDialogAC,
+    addPostAC,
+    changeNewDialogAC,
+    changeNewTextAC,
+    DialogsPageType
+} from "../../redux/state";
 
 
 
 type DialogMessPropsType = {
-   dialogsPage:  DialogsPageType
-    addDialogs: (message: string) => void
+    dialogsPage:  DialogsPageType
     message: string
-    updateDialogsMessage: (newText: string) => void
+    dispatch: (action: ActionsTypes) => void
 }
 
 export const Dialogs = (props: DialogMessPropsType) => {
 
-    let newPostElement = React.createRef<HTMLTextAreaElement>()
-
     const addText = () => {
-        // let text = newPostElement.current?.value
-        // alert(text)
-        alert('props.addDialogs(props.message)')
+        props.dispatch(addDialogAC(props.message))
     }
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updateDialogsMessage(e.currentTarget.value)
+        props.dispatch(changeNewDialogAC(e.currentTarget.value))
     }
 
 

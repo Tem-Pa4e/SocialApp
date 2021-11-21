@@ -54,7 +54,6 @@ export type StateType = {
 //     sidebar: {}
 // }
 
-
 export type StoreType = {
     _state: StateType
     updateNewPostText: (newText: string) => void
@@ -67,15 +66,11 @@ export type StoreType = {
     updateDialogsMessage: (newText: string) => void
 }
 
-// type AddPostActionType = {
-//     type: 'ADD-POST'
-//     message: string
-// }
-
-
-export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof changeNewTextAC>
+export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof changeNewTextAC> | ReturnType<typeof changeNewDialogAC> | ReturnType<typeof addDialogAC>
 export const addPostAC = (message: string) => ({type: "ADD-POST", message: message}) as const
 export const changeNewTextAC = (newText: string) => ({type: "CHANGE-NEW-TEXT", newText: newText }) as const
+export const addDialogAC = (message: string) => ({type: "ADD-DIALOG", message: message}) as const
+export const changeNewDialogAC = (newMessageText: string) => ({type: "CHANGE-NEW-DIALOG",newMessageText: newMessageText }) as const
 
 export const store: StoreType = {
     _state: {
@@ -139,6 +134,17 @@ export const store: StoreType = {
             this._renderTree();
         }else if (action.type === 'CHANGE-NEW-TEXT') {
             this._state.profilePage.newPostText = action.newText
+            this._renderTree()
+        }else if (action.type === 'ADD-DIALOG'){
+            const newMessage: MessagesType = {
+                id: 4,
+                message: action.message,
+            }
+            this._state.dialogsPage.messages.push(newMessage)
+            this._state.dialogsPage.newMessages = '';
+            this._renderTree();
+        }else if (action.type === 'CHANGE-NEW-DIALOG'){
+            this._state.dialogsPage.newMessages = action.newMessageText
             this._renderTree()
         }
     },
