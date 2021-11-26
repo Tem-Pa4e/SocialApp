@@ -5,8 +5,7 @@ import {Profile} from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
-import {StoreType} from "./redux/state";
-
+import {StoreType} from "./redux/store";
 
 
 type PropsType = {
@@ -22,9 +21,13 @@ const App = (props: PropsType) => {
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={() => <Dialogs dispatch={props.store.dispatch.bind(props.store)} message={state.dialogsPage.newMessages} dialogsPage={state.dialogsPage}/>}/>
+                    <Route path='/dialogs' render={() => <Dialogs dispatch={props.store.dispatch.bind(props.store)}
+                                                                  message={state.dialogsPage.newMessages}
+                                                                  dialogsPage={state.dialogsPage}/>}/>
                     <Route path='/profile'
-                           render={() => <Profile dispatch={props.store.dispatch.bind(props.store)}  message={state.profilePage.newPostText} profilePage={state.profilePage} />}/>
+                           render={() => <Profile dispatch={props.store.dispatch.bind(props.store)}
+                                                  message={state.profilePage.newPostText}
+                                                  profilePage={state.profilePage}/>}/>
                     <Route path='/news'/>
                     <Route path='/music'/>
                     <Route path='/setting'/>

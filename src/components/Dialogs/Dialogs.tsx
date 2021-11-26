@@ -9,12 +9,11 @@ import {
     changeNewDialogAC,
     changeNewTextAC,
     DialogsPageType
-} from "../../redux/state";
-
+} from "../../redux/store";
 
 
 type DialogMessPropsType = {
-    dialogsPage:  DialogsPageType
+    dialogsPage: DialogsPageType
     message: string
     dispatch: (action: ActionsTypes) => void
 }
@@ -28,11 +27,7 @@ export const Dialogs = (props: DialogMessPropsType) => {
         props.dispatch(changeNewDialogAC(e.currentTarget.value))
     }
 
-
-
-
     let dialogsElements = props.dialogsPage.dialogs.map(d => <DialogsItem name={d.name} id={d.id}/>)
-
     let messagesElements = props.dialogsPage.messages.map(m => <Message message={m.message} id={m.id}/>)
 
     return (
