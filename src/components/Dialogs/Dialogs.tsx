@@ -1,34 +1,33 @@
-import React, {ChangeEvent, LegacyRef} from "react";
+import React, {ChangeEvent} from "react";
+
 import s from './Dialogs.module.css'
 import {DialogsItem} from "./DialogsItem/DialogsItem";
 import {Message} from "./Message/Message";
-import {
-    ActionsTypes,
-    addDialogAC,
-    addPostAC,
-    changeNewDialogAC,
-    changeNewTextAC,
-    DialogsPageType
-} from "../../redux/store";
+import {DialogsPropsType} from "./DialogsContainer";
 
 
-type DialogMessPropsType = {
-    dialogsPage: DialogsPageType
-    message: string
-    dispatch: (action: ActionsTypes) => void
-}
 
-export const Dialogs = (props: DialogMessPropsType) => {
+// type DialogMessPropsType = {
+//     dialogsPage: Array<DialogsType>
+//     messagesPage: Array<MessagesType>
+//     message: string
+//     updateNewMessagesText: (text: string) => void
+//     addText: (message: string) => void
+// }
+
+export const Dialogs = (props: DialogsPropsType) => {
 
     const addText = () => {
-        props.dispatch(addDialogAC(props.message))
+        props.addText(props.message.newMessages)
     }
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(changeNewDialogAC(e.currentTarget.value))
+        let text = e.currentTarget.value
+        props.updateNewMessagesText(text)
+
     }
 
     let dialogsElements = props.dialogsPage.dialogs.map(d => <DialogsItem name={d.name} id={d.id}/>)
-    let messagesElements = props.dialogsPage.messages.map(m => <Message message={m.message} id={m.id}/>)
+    let messagesElements = props.messagesPage.messages.map(m => <Message message={m.message} id={m.id}/>)
 
     return (
         <div className={s.dialogs}>
@@ -37,7 +36,7 @@ export const Dialogs = (props: DialogMessPropsType) => {
             </div>
             <div className={s.messagesItem}>
                 {messagesElements}
-                <textarea onChange={onChangeHandler} value={props.message}></textarea>
+                <textarea onChange={onChangeHandler} value={props.message.newMessages}></textarea>
                 <button onClick={addText}>add message</button>
             </div>
 

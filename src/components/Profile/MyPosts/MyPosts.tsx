@@ -1,33 +1,39 @@
 import React, {ChangeEvent, createRef, KeyboardEvent} from 'react';
 import s from './MyPosts.module.css';
 import {Post, PostPropsType,} from './Post/Post';
-import {ActionsTypes, addPostAC, changeNewTextAC} from "../../../redux/store";
+import {MyPostsPropsType} from "./MyPostsContainer";
 
 
-type MyPostPropsType = {
-    posts: Array<PostPropsType>
-    message: string
-    dispatch: (action: ActionsTypes) => void
-}
+// type MyPostPropsType = {
+//     posts: Array<PostPropsType>
+//     message: string
+//     // dispatch: (action: ActionsTypes) => void
+//     updateNewPostText: (text: string) => void
+//     addPost: () => void
+// }
 
-export const MyPosts = (props: MyPostPropsType) => {
+export const MyPosts = (props: MyPostsPropsType) => {
 
-    let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
+    let postsElements = props.posts.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
 
-
+    // let newPostElement = createRef<HTMLTextAreaElement>();
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(changeNewTextAC(e.currentTarget.value))
+        let text = e.currentTarget.value
+        props.updateNewPostText(text)
+
+        // props.dispatch(changeNewTextAC(e.currentTarget.value))
     }
 
-    // let postMessage = createRef<HTMLTextAreaElement>();
+
     const addPost = () => {
-        props.dispatch(addPostAC(props.message))
+        props.addPost(props.message.newPostText)
+        // props.dispatch(addPostAC(props.message))
     }
     return (
         <div className={s.postBlock}>
             <h3>My Posts</h3>
             <div>
-                <div><textarea value={props.message} onChange={onChangeHandler}/></div>
+                <div><textarea value={props.message.newPostText} onChange={onChangeHandler}/></div>
                 <div>
                     <button onClick={addPost}>Add post</button>
                 </div>
