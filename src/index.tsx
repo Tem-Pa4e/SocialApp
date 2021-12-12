@@ -20,7 +20,7 @@ export const renderTree = () => {
     );
 }
 
-store.subscribe(renderTree)
+
 renderTree()
 
 

@@ -14,7 +14,7 @@ import {MyPostsPropsType} from "./MyPostsContainer";
 
 export const MyPosts = (props: MyPostsPropsType) => {
 
-    let postsElements = props.posts.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
+    let postsElements = props.posts.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>)
 
     // let newPostElement = createRef<HTMLTextAreaElement>();
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
